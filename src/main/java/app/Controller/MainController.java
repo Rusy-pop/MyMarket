@@ -26,20 +26,15 @@ public class MainController {
 	public String addItem(@RequestParam String itemName,
 						  @RequestParam String itemPrice,
 						  Model model){
-
-		if (!itemName.isEmpty()) {
-			Item i;
-			if (itemPrice.isEmpty()) {
-				i = new Item(itemName, "0.00");
-			} else i = new Item(itemName, itemPrice);
-			itemRepo.save(i);
-			i = null;
-		}
+		if (itemRepo.findByName(itemName)==null){
+			Item it = new Item(itemName, itemPrice);
+			itemRepo.save(it);
+			model.addAttribute("message", "Товар добавлен");
+		} else model.addAttribute("message", "Товар с таким именем уже существует");
 
 		Iterable list = itemRepo.findAll();
 		model.addAttribute("items", list);
 
 		return "MyMarket";
 	}
-
 }

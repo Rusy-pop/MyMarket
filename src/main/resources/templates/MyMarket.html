@@ -9,21 +9,25 @@
 
 <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-        <span class="navbar-brand mb-1 h1">Navbar</span>
+        <span class="nav-link" href="MyMarket">MyMarket</span>
+    </div>
+    <div class="container-fluid">
+        <span class="nav-link" href="Registration">Registration</span>
     </div>
 </nav>
 
 <div>
-    <form method="post">
-        <div class="mt-1"><input type="text" name="itemName"> Введите имя продукта </input></div>
-        <div class="mt-1"><input type="text" name="itemPrice"> Введите цену продукта </input></div>
-        <div class="mt-1"><button type="submit"> Добавить продукт </button></div>
+    <form method="post" class="md-2">
+        <div class="mt-2"><input type="text" name="itemName"> Введите имя продукта </input></div>
+        <div class="mt-2"><input type="text" name="itemPrice"> Введите цену продукта </input></div>
+        <div class="mt-2"><button type="submit"> Добавить продукт </button></div>
+        <div class="mt-2"><p th:utext = "${message}"/></div>
     </form>
 </div>
 
 <div>
     <form method="get">
-        <h3>Список товаров</h3>
+        <h3 class="ml-2">Список товаров</h3>
         <th:block th:each="item : ${items}">
             <div><td th:utext="${item.name} + ': ' + ${item.price} + '$'"/></div>
         </th:block>
