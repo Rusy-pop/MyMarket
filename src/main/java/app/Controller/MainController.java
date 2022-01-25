@@ -15,6 +15,17 @@ public class MainController {
 	@Autowired
 	ItemRepo itemRepo;
 
+	@GetMapping("/")
+	public String main(Model model, String message){
+		return "main";
+	}
+
+	@PostMapping("/")
+	public String reg(Model model, String message) {
+		model.addAttribute("message", message);
+		return "main";
+	}
+
 	@GetMapping("/MyMarket")
 	public String showMarket(Model model) {
 		Iterable list = itemRepo.findAll();
